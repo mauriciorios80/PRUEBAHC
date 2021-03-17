@@ -1,0 +1,605 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PRUEBAHCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CLIENTES">
+          <Key>
+            <PropertyRef Name="CLI_ID" />
+          </Key>
+          <Property Name="CLI_ID" Type="int" Nullable="false" />
+          <Property Name="CLI_PRIMER_NOMBRE" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CLI_SEGUNDO_NOMBRE" Type="varchar" MaxLength="255" />
+          <Property Name="CLI_PRIMER_APELLIDO" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CLI_SEGUNDO_APELLIDO" Type="varchar" MaxLength="255" />
+          <Property Name="CLI_TIPO_DOCUMENTO" Type="int" Nullable="false" />
+          <Property Name="CLI_DOCUMENTO" Type="int" Nullable="false" />
+          <Property Name="CLI_NUMERO_MOVIL" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CLI_DIRECCION" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CLI_EMAIL" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CLI_PRESUPUESTO" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CLI_ROW_CREATE" Type="date" />
+          <Property Name="CLI_ROW_MODIFY" Type="date" />
+        </EntityType>
+        <EntityType Name="FACTURAS">
+          <Key>
+            <PropertyRef Name="FAC_ID" />
+          </Key>
+          <Property Name="FAC_ID" Type="int" Nullable="false" />
+          <Property Name="FAC_CLI_ID" Type="int" Nullable="false" />
+          <Property Name="FAC_MEC_ID" Type="int" Nullable="false" />
+          <Property Name="FAC_TOTAL_PARCIAL" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FAC_IVA" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FAC_DESCUENTO" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FAC_TOTAL" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FACTURAS_DETALLE">
+          <Key>
+            <PropertyRef Name="FACD_ID" />
+          </Key>
+          <Property Name="FACD_ID" Type="int" Nullable="false" />
+          <Property Name="FAC_ID" Type="int" Nullable="false" />
+          <Property Name="REP_ID" Type="int" />
+          <Property Name="REP_VALOR" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="SER_ID" Type="int" />
+          <Property Name="SER_VALOR" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="MECANICOS">
+          <Key>
+            <PropertyRef Name="MEC_ID" />
+          </Key>
+          <Property Name="MEC_ID" Type="int" Nullable="false" />
+          <Property Name="MEC_PRIMER_NOMBRE" Type="varchar" MaxLength="255" />
+          <Property Name="MEC_SEGUNDO_NOMBRE" Type="varchar" MaxLength="255" />
+          <Property Name="MEC_PRIMER_APELLIDO" Type="varchar" MaxLength="255" />
+          <Property Name="MEC_SEGUNDO_APELLIDO" Type="varchar" MaxLength="255" />
+          <Property Name="MEC_TIPO_DOCUMENTO" Type="int" />
+          <Property Name="MEC_DOCUMENTO" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="MEC_NUMERO_MOVIL" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="MEC_DIRECCION" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="MEC_EMAIL" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="MEC_ESTADO" Type="int" Nullable="false" />
+          <Property Name="MEC_ROW_CREATE" Type="date" />
+          <Property Name="MEC_ROW_MODIFY" Type="date" />
+        </EntityType>
+        <EntityType Name="REPUESTOS">
+          <Key>
+            <PropertyRef Name="REP_ID" />
+          </Key>
+          <Property Name="REP_ID" Type="int" Nullable="false" />
+          <Property Name="REP_DESCRIPCION" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="REP_PRECIO" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="REP_ROW_CREATE" Type="date" />
+          <Property Name="REP_ROW_MODIFY" Type="date" />
+        </EntityType>
+        <EntityType Name="SERVICIOS">
+          <Key>
+            <PropertyRef Name="SER_ID" />
+          </Key>
+          <Property Name="SER_ID" Type="int" Nullable="false" />
+          <Property Name="SER_DESCRIPCION" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SER_VALOR_MIN" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="SER_VALOR_MAX" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="SER_ROW_CREATE" Type="date" />
+          <Property Name="SER_ROW_MODIFY" Type="date" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TIPODOCUMENTO">
+          <Key>
+            <PropertyRef Name="TD_ID" />
+          </Key>
+          <Property Name="TD_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TD_DESCRIPCION" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TD_ROW_CREATE" Type="date" />
+          <Property Name="TD_ROW_MODIFY" Type="date" />
+        </EntityType>
+        <Association Name="FK_CLIENTES_TIPODOCUMENTO">
+          <End Role="TIPODOCUMENTO" Type="Self.TIPODOCUMENTO" Multiplicity="1" />
+          <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPODOCUMENTO">
+              <PropertyRef Name="TD_ID" />
+            </Principal>
+            <Dependent Role="CLIENTES">
+              <PropertyRef Name="CLI_TIPO_DOCUMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FACTURAS_CLIENTES">
+          <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="1" />
+          <End Role="FACTURAS" Type="Self.FACTURAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTES">
+              <PropertyRef Name="CLI_ID" />
+            </Principal>
+            <Dependent Role="FACTURAS">
+              <PropertyRef Name="FAC_CLI_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FACTURAS_DETALLE_FACTURAS">
+          <End Role="FACTURAS" Type="Self.FACTURAS" Multiplicity="1" />
+          <End Role="FACTURAS_DETALLE" Type="Self.FACTURAS_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FACTURAS">
+              <PropertyRef Name="FAC_ID" />
+            </Principal>
+            <Dependent Role="FACTURAS_DETALLE">
+              <PropertyRef Name="FAC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FACTURAS_DETALLE_REPUESTOS">
+          <End Role="REPUESTOS" Type="Self.REPUESTOS" Multiplicity="0..1" />
+          <End Role="FACTURAS_DETALLE" Type="Self.FACTURAS_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REPUESTOS">
+              <PropertyRef Name="REP_ID" />
+            </Principal>
+            <Dependent Role="FACTURAS_DETALLE">
+              <PropertyRef Name="REP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FACTURAS_DETALLE_SERVICIOS">
+          <End Role="SERVICIOS" Type="Self.SERVICIOS" Multiplicity="0..1" />
+          <End Role="FACTURAS_DETALLE" Type="Self.FACTURAS_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICIOS">
+              <PropertyRef Name="SER_ID" />
+            </Principal>
+            <Dependent Role="FACTURAS_DETALLE">
+              <PropertyRef Name="SER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FACTURAS_MECANICOS">
+          <End Role="MECANICOS" Type="Self.MECANICOS" Multiplicity="1" />
+          <End Role="FACTURAS" Type="Self.FACTURAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MECANICOS">
+              <PropertyRef Name="MEC_ID" />
+            </Principal>
+            <Dependent Role="FACTURAS">
+              <PropertyRef Name="FAC_MEC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MECANICOS_TIPODOCUMENTO">
+          <End Role="TIPODOCUMENTO" Type="Self.TIPODOCUMENTO" Multiplicity="0..1" />
+          <End Role="MECANICOS" Type="Self.MECANICOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPODOCUMENTO">
+              <PropertyRef Name="TD_ID" />
+            </Principal>
+            <Dependent Role="MECANICOS">
+              <PropertyRef Name="MEC_TIPO_DOCUMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PRUEBAHCModelStoreContainer">
+          <EntitySet Name="CLIENTES" EntityType="Self.CLIENTES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FACTURAS" EntityType="Self.FACTURAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FACTURAS_DETALLE" EntityType="Self.FACTURAS_DETALLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MECANICOS" EntityType="Self.MECANICOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REPUESTOS" EntityType="Self.REPUESTOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SERVICIOS" EntityType="Self.SERVICIOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPODOCUMENTO" EntityType="Self.TIPODOCUMENTO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CLIENTES_TIPODOCUMENTO" Association="Self.FK_CLIENTES_TIPODOCUMENTO">
+            <End Role="TIPODOCUMENTO" EntitySet="TIPODOCUMENTO" />
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FACTURAS_CLIENTES" Association="Self.FK_FACTURAS_CLIENTES">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="FACTURAS" EntitySet="FACTURAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FACTURAS_DETALLE_FACTURAS" Association="Self.FK_FACTURAS_DETALLE_FACTURAS">
+            <End Role="FACTURAS" EntitySet="FACTURAS" />
+            <End Role="FACTURAS_DETALLE" EntitySet="FACTURAS_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FACTURAS_DETALLE_REPUESTOS" Association="Self.FK_FACTURAS_DETALLE_REPUESTOS">
+            <End Role="REPUESTOS" EntitySet="REPUESTOS" />
+            <End Role="FACTURAS_DETALLE" EntitySet="FACTURAS_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FACTURAS_DETALLE_SERVICIOS" Association="Self.FK_FACTURAS_DETALLE_SERVICIOS">
+            <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+            <End Role="FACTURAS_DETALLE" EntitySet="FACTURAS_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FACTURAS_MECANICOS" Association="Self.FK_FACTURAS_MECANICOS">
+            <End Role="MECANICOS" EntitySet="MECANICOS" />
+            <End Role="FACTURAS" EntitySet="FACTURAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MECANICOS_TIPODOCUMENTO" Association="Self.FK_MECANICOS_TIPODOCUMENTO">
+            <End Role="TIPODOCUMENTO" EntitySet="TIPODOCUMENTO" />
+            <End Role="MECANICOS" EntitySet="MECANICOS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PRUEBAHCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CLIENTES">
+          <Key>
+            <PropertyRef Name="CLI_ID" />
+          </Key>
+          <Property Name="CLI_ID" Type="Int32" Nullable="false" />
+          <Property Name="CLI_PRIMER_NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLI_SEGUNDO_NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CLI_PRIMER_APELLIDO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLI_SEGUNDO_APELLIDO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CLI_TIPO_DOCUMENTO" Type="Int32" Nullable="false" />
+          <Property Name="CLI_DOCUMENTO" Type="Int32" Nullable="false" />
+          <Property Name="CLI_NUMERO_MOVIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLI_DIRECCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLI_EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLI_PRESUPUESTO" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CLI_ROW_CREATE" Type="DateTime" Precision="0" />
+          <Property Name="CLI_ROW_MODIFY" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TIPODOCUMENTO" Relationship="Self.FK_CLIENTES_TIPODOCUMENTO" FromRole="CLIENTES" ToRole="TIPODOCUMENTO" />
+          <NavigationProperty Name="FACTURAS" Relationship="Self.FK_FACTURAS_CLIENTES" FromRole="CLIENTES" ToRole="FACTURAS" />
+        </EntityType>
+        <EntityType Name="FACTURAS">
+          <Key>
+            <PropertyRef Name="FAC_ID" />
+          </Key>
+          <Property Name="FAC_ID" Type="Int32" Nullable="false" />
+          <Property Name="FAC_CLI_ID" Type="Int32" Nullable="false" />
+          <Property Name="FAC_MEC_ID" Type="Int32" Nullable="false" />
+          <Property Name="FAC_TOTAL_PARCIAL" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FAC_IVA" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FAC_DESCUENTO" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FAC_TOTAL" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="CLIENTES" Relationship="Self.FK_FACTURAS_CLIENTES" FromRole="FACTURAS" ToRole="CLIENTES" />
+          <NavigationProperty Name="FACTURAS_DETALLE" Relationship="Self.FK_FACTURAS_DETALLE_FACTURAS" FromRole="FACTURAS" ToRole="FACTURAS_DETALLE" />
+          <NavigationProperty Name="MECANICOS" Relationship="Self.FK_FACTURAS_MECANICOS" FromRole="FACTURAS" ToRole="MECANICOS" />
+        </EntityType>
+        <EntityType Name="FACTURAS_DETALLE">
+          <Key>
+            <PropertyRef Name="FACD_ID" />
+          </Key>
+          <Property Name="FACD_ID" Type="Int32" Nullable="false" />
+          <Property Name="FAC_ID" Type="Int32" Nullable="false" />
+          <Property Name="REP_ID" Type="Int32" />
+          <Property Name="REP_VALOR" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SER_ID" Type="Int32" />
+          <Property Name="SER_VALOR" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="FACTURAS" Relationship="Self.FK_FACTURAS_DETALLE_FACTURAS" FromRole="FACTURAS_DETALLE" ToRole="FACTURAS" />
+          <NavigationProperty Name="REPUESTOS" Relationship="Self.FK_FACTURAS_DETALLE_REPUESTOS" FromRole="FACTURAS_DETALLE" ToRole="REPUESTOS" />
+          <NavigationProperty Name="SERVICIOS" Relationship="Self.FK_FACTURAS_DETALLE_SERVICIOS" FromRole="FACTURAS_DETALLE" ToRole="SERVICIOS" />
+        </EntityType>
+        <EntityType Name="MECANICOS">
+          <Key>
+            <PropertyRef Name="MEC_ID" />
+          </Key>
+          <Property Name="MEC_ID" Type="Int32" Nullable="false" />
+          <Property Name="MEC_PRIMER_NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MEC_SEGUNDO_NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MEC_PRIMER_APELLIDO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MEC_SEGUNDO_APELLIDO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MEC_TIPO_DOCUMENTO" Type="Int32" />
+          <Property Name="MEC_DOCUMENTO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MEC_NUMERO_MOVIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MEC_DIRECCION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MEC_EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MEC_ESTADO" Type="Int32" Nullable="false" />
+          <Property Name="MEC_ROW_CREATE" Type="DateTime" Precision="0" />
+          <Property Name="MEC_ROW_MODIFY" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="FACTURAS" Relationship="Self.FK_FACTURAS_MECANICOS" FromRole="MECANICOS" ToRole="FACTURAS" />
+          <NavigationProperty Name="TIPODOCUMENTO" Relationship="Self.FK_MECANICOS_TIPODOCUMENTO" FromRole="MECANICOS" ToRole="TIPODOCUMENTO" />
+        </EntityType>
+        <EntityType Name="REPUESTOS">
+          <Key>
+            <PropertyRef Name="REP_ID" />
+          </Key>
+          <Property Name="REP_ID" Type="Int32" Nullable="false" />
+          <Property Name="REP_DESCRIPCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REP_PRECIO" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="REP_ROW_CREATE" Type="DateTime" Precision="0" />
+          <Property Name="REP_ROW_MODIFY" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="FACTURAS_DETALLE" Relationship="Self.FK_FACTURAS_DETALLE_REPUESTOS" FromRole="REPUESTOS" ToRole="FACTURAS_DETALLE" />
+        </EntityType>
+        <EntityType Name="SERVICIOS">
+          <Key>
+            <PropertyRef Name="SER_ID" />
+          </Key>
+          <Property Name="SER_ID" Type="Int32" Nullable="false" />
+          <Property Name="SER_DESCRIPCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SER_VALOR_MIN" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="SER_VALOR_MAX" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SER_ROW_CREATE" Type="DateTime" Precision="0" />
+          <Property Name="SER_ROW_MODIFY" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="FACTURAS_DETALLE" Relationship="Self.FK_FACTURAS_DETALLE_SERVICIOS" FromRole="SERVICIOS" ToRole="FACTURAS_DETALLE" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TIPODOCUMENTO">
+          <Key>
+            <PropertyRef Name="TD_ID" />
+          </Key>
+          <Property Name="TD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TD_DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TD_ROW_CREATE" Type="DateTime" Precision="0" />
+          <Property Name="TD_ROW_MODIFY" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="CLIENTES" Relationship="Self.FK_CLIENTES_TIPODOCUMENTO" FromRole="TIPODOCUMENTO" ToRole="CLIENTES" />
+          <NavigationProperty Name="MECANICOS" Relationship="Self.FK_MECANICOS_TIPODOCUMENTO" FromRole="TIPODOCUMENTO" ToRole="MECANICOS" />
+        </EntityType>
+        <Association Name="FK_CLIENTES_TIPODOCUMENTO">
+          <End Role="TIPODOCUMENTO" Type="Self.TIPODOCUMENTO" Multiplicity="1" />
+          <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPODOCUMENTO">
+              <PropertyRef Name="TD_ID" />
+            </Principal>
+            <Dependent Role="CLIENTES">
+              <PropertyRef Name="CLI_TIPO_DOCUMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FACTURAS_CLIENTES">
+          <End Role="CLIENTES" Type="Self.CLIENTES" Multiplicity="1" />
+          <End Role="FACTURAS" Type="Self.FACTURAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTES">
+              <PropertyRef Name="CLI_ID" />
+            </Principal>
+            <Dependent Role="FACTURAS">
+              <PropertyRef Name="FAC_CLI_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FACTURAS_DETALLE_FACTURAS">
+          <End Role="FACTURAS" Type="Self.FACTURAS" Multiplicity="1" />
+          <End Role="FACTURAS_DETALLE" Type="Self.FACTURAS_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FACTURAS">
+              <PropertyRef Name="FAC_ID" />
+            </Principal>
+            <Dependent Role="FACTURAS_DETALLE">
+              <PropertyRef Name="FAC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FACTURAS_MECANICOS">
+          <End Role="MECANICOS" Type="Self.MECANICOS" Multiplicity="1" />
+          <End Role="FACTURAS" Type="Self.FACTURAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MECANICOS">
+              <PropertyRef Name="MEC_ID" />
+            </Principal>
+            <Dependent Role="FACTURAS">
+              <PropertyRef Name="FAC_MEC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FACTURAS_DETALLE_REPUESTOS">
+          <End Role="REPUESTOS" Type="Self.REPUESTOS" Multiplicity="0..1" />
+          <End Role="FACTURAS_DETALLE" Type="Self.FACTURAS_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REPUESTOS">
+              <PropertyRef Name="REP_ID" />
+            </Principal>
+            <Dependent Role="FACTURAS_DETALLE">
+              <PropertyRef Name="REP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FACTURAS_DETALLE_SERVICIOS">
+          <End Role="SERVICIOS" Type="Self.SERVICIOS" Multiplicity="0..1" />
+          <End Role="FACTURAS_DETALLE" Type="Self.FACTURAS_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICIOS">
+              <PropertyRef Name="SER_ID" />
+            </Principal>
+            <Dependent Role="FACTURAS_DETALLE">
+              <PropertyRef Name="SER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MECANICOS_TIPODOCUMENTO">
+          <End Role="TIPODOCUMENTO" Type="Self.TIPODOCUMENTO" Multiplicity="0..1" />
+          <End Role="MECANICOS" Type="Self.MECANICOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPODOCUMENTO">
+              <PropertyRef Name="TD_ID" />
+            </Principal>
+            <Dependent Role="MECANICOS">
+              <PropertyRef Name="MEC_TIPO_DOCUMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PRUEBAHCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CLIENTES" EntityType="Self.CLIENTES" />
+          <EntitySet Name="FACTURAS" EntityType="Self.FACTURAS" />
+          <EntitySet Name="FACTURAS_DETALLE" EntityType="Self.FACTURAS_DETALLE" />
+          <EntitySet Name="MECANICOS" EntityType="Self.MECANICOS" />
+          <EntitySet Name="REPUESTOS" EntityType="Self.REPUESTOS" />
+          <EntitySet Name="SERVICIOS" EntityType="Self.SERVICIOS" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TIPODOCUMENTO" EntityType="Self.TIPODOCUMENTO" />
+          <AssociationSet Name="FK_CLIENTES_TIPODOCUMENTO" Association="Self.FK_CLIENTES_TIPODOCUMENTO">
+            <End Role="TIPODOCUMENTO" EntitySet="TIPODOCUMENTO" />
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FACTURAS_CLIENTES" Association="Self.FK_FACTURAS_CLIENTES">
+            <End Role="CLIENTES" EntitySet="CLIENTES" />
+            <End Role="FACTURAS" EntitySet="FACTURAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FACTURAS_DETALLE_FACTURAS" Association="Self.FK_FACTURAS_DETALLE_FACTURAS">
+            <End Role="FACTURAS" EntitySet="FACTURAS" />
+            <End Role="FACTURAS_DETALLE" EntitySet="FACTURAS_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FACTURAS_MECANICOS" Association="Self.FK_FACTURAS_MECANICOS">
+            <End Role="MECANICOS" EntitySet="MECANICOS" />
+            <End Role="FACTURAS" EntitySet="FACTURAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FACTURAS_DETALLE_REPUESTOS" Association="Self.FK_FACTURAS_DETALLE_REPUESTOS">
+            <End Role="REPUESTOS" EntitySet="REPUESTOS" />
+            <End Role="FACTURAS_DETALLE" EntitySet="FACTURAS_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FACTURAS_DETALLE_SERVICIOS" Association="Self.FK_FACTURAS_DETALLE_SERVICIOS">
+            <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+            <End Role="FACTURAS_DETALLE" EntitySet="FACTURAS_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MECANICOS_TIPODOCUMENTO" Association="Self.FK_MECANICOS_TIPODOCUMENTO">
+            <End Role="TIPODOCUMENTO" EntitySet="TIPODOCUMENTO" />
+            <End Role="MECANICOS" EntitySet="MECANICOS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PRUEBAHCModelStoreContainer" CdmEntityContainer="PRUEBAHCEntities">
+          <EntitySetMapping Name="CLIENTES">
+            <EntityTypeMapping TypeName="PRUEBAHCModel.CLIENTES">
+              <MappingFragment StoreEntitySet="CLIENTES">
+                <ScalarProperty Name="CLI_ID" ColumnName="CLI_ID" />
+                <ScalarProperty Name="CLI_PRIMER_NOMBRE" ColumnName="CLI_PRIMER_NOMBRE" />
+                <ScalarProperty Name="CLI_SEGUNDO_NOMBRE" ColumnName="CLI_SEGUNDO_NOMBRE" />
+                <ScalarProperty Name="CLI_PRIMER_APELLIDO" ColumnName="CLI_PRIMER_APELLIDO" />
+                <ScalarProperty Name="CLI_SEGUNDO_APELLIDO" ColumnName="CLI_SEGUNDO_APELLIDO" />
+                <ScalarProperty Name="CLI_TIPO_DOCUMENTO" ColumnName="CLI_TIPO_DOCUMENTO" />
+                <ScalarProperty Name="CLI_DOCUMENTO" ColumnName="CLI_DOCUMENTO" />
+                <ScalarProperty Name="CLI_NUMERO_MOVIL" ColumnName="CLI_NUMERO_MOVIL" />
+                <ScalarProperty Name="CLI_DIRECCION" ColumnName="CLI_DIRECCION" />
+                <ScalarProperty Name="CLI_EMAIL" ColumnName="CLI_EMAIL" />
+                <ScalarProperty Name="CLI_PRESUPUESTO" ColumnName="CLI_PRESUPUESTO" />
+                <ScalarProperty Name="CLI_ROW_CREATE" ColumnName="CLI_ROW_CREATE" />
+                <ScalarProperty Name="CLI_ROW_MODIFY" ColumnName="CLI_ROW_MODIFY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FACTURAS">
+            <EntityTypeMapping TypeName="PRUEBAHCModel.FACTURAS">
+              <MappingFragment StoreEntitySet="FACTURAS">
+                <ScalarProperty Name="FAC_ID" ColumnName="FAC_ID" />
+                <ScalarProperty Name="FAC_CLI_ID" ColumnName="FAC_CLI_ID" />
+                <ScalarProperty Name="FAC_MEC_ID" ColumnName="FAC_MEC_ID" />
+                <ScalarProperty Name="FAC_TOTAL_PARCIAL" ColumnName="FAC_TOTAL_PARCIAL" />
+                <ScalarProperty Name="FAC_IVA" ColumnName="FAC_IVA" />
+                <ScalarProperty Name="FAC_DESCUENTO" ColumnName="FAC_DESCUENTO" />
+                <ScalarProperty Name="FAC_TOTAL" ColumnName="FAC_TOTAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FACTURAS_DETALLE">
+            <EntityTypeMapping TypeName="PRUEBAHCModel.FACTURAS_DETALLE">
+              <MappingFragment StoreEntitySet="FACTURAS_DETALLE">
+                <ScalarProperty Name="FACD_ID" ColumnName="FACD_ID" />
+                <ScalarProperty Name="FAC_ID" ColumnName="FAC_ID" />
+                <ScalarProperty Name="REP_ID" ColumnName="REP_ID" />
+                <ScalarProperty Name="REP_VALOR" ColumnName="REP_VALOR" />
+                <ScalarProperty Name="SER_ID" ColumnName="SER_ID" />
+                <ScalarProperty Name="SER_VALOR" ColumnName="SER_VALOR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MECANICOS">
+            <EntityTypeMapping TypeName="PRUEBAHCModel.MECANICOS">
+              <MappingFragment StoreEntitySet="MECANICOS">
+                <ScalarProperty Name="MEC_ID" ColumnName="MEC_ID" />
+                <ScalarProperty Name="MEC_PRIMER_NOMBRE" ColumnName="MEC_PRIMER_NOMBRE" />
+                <ScalarProperty Name="MEC_SEGUNDO_NOMBRE" ColumnName="MEC_SEGUNDO_NOMBRE" />
+                <ScalarProperty Name="MEC_PRIMER_APELLIDO" ColumnName="MEC_PRIMER_APELLIDO" />
+                <ScalarProperty Name="MEC_SEGUNDO_APELLIDO" ColumnName="MEC_SEGUNDO_APELLIDO" />
+                <ScalarProperty Name="MEC_TIPO_DOCUMENTO" ColumnName="MEC_TIPO_DOCUMENTO" />
+                <ScalarProperty Name="MEC_DOCUMENTO" ColumnName="MEC_DOCUMENTO" />
+                <ScalarProperty Name="MEC_NUMERO_MOVIL" ColumnName="MEC_NUMERO_MOVIL" />
+                <ScalarProperty Name="MEC_DIRECCION" ColumnName="MEC_DIRECCION" />
+                <ScalarProperty Name="MEC_EMAIL" ColumnName="MEC_EMAIL" />
+                <ScalarProperty Name="MEC_ESTADO" ColumnName="MEC_ESTADO" />
+                <ScalarProperty Name="MEC_ROW_CREATE" ColumnName="MEC_ROW_CREATE" />
+                <ScalarProperty Name="MEC_ROW_MODIFY" ColumnName="MEC_ROW_MODIFY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REPUESTOS">
+            <EntityTypeMapping TypeName="PRUEBAHCModel.REPUESTOS">
+              <MappingFragment StoreEntitySet="REPUESTOS">
+                <ScalarProperty Name="REP_ID" ColumnName="REP_ID" />
+                <ScalarProperty Name="REP_DESCRIPCION" ColumnName="REP_DESCRIPCION" />
+                <ScalarProperty Name="REP_PRECIO" ColumnName="REP_PRECIO" />
+                <ScalarProperty Name="REP_ROW_CREATE" ColumnName="REP_ROW_CREATE" />
+                <ScalarProperty Name="REP_ROW_MODIFY" ColumnName="REP_ROW_MODIFY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SERVICIOS">
+            <EntityTypeMapping TypeName="PRUEBAHCModel.SERVICIOS">
+              <MappingFragment StoreEntitySet="SERVICIOS">
+                <ScalarProperty Name="SER_ID" ColumnName="SER_ID" />
+                <ScalarProperty Name="SER_DESCRIPCION" ColumnName="SER_DESCRIPCION" />
+                <ScalarProperty Name="SER_VALOR_MIN" ColumnName="SER_VALOR_MIN" />
+                <ScalarProperty Name="SER_VALOR_MAX" ColumnName="SER_VALOR_MAX" />
+                <ScalarProperty Name="SER_ROW_CREATE" ColumnName="SER_ROW_CREATE" />
+                <ScalarProperty Name="SER_ROW_MODIFY" ColumnName="SER_ROW_MODIFY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="PRUEBAHCModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPODOCUMENTO">
+            <EntityTypeMapping TypeName="PRUEBAHCModel.TIPODOCUMENTO">
+              <MappingFragment StoreEntitySet="TIPODOCUMENTO">
+                <ScalarProperty Name="TD_ID" ColumnName="TD_ID" />
+                <ScalarProperty Name="TD_DESCRIPCION" ColumnName="TD_DESCRIPCION" />
+                <ScalarProperty Name="TD_ROW_CREATE" ColumnName="TD_ROW_CREATE" />
+                <ScalarProperty Name="TD_ROW_MODIFY" ColumnName="TD_ROW_MODIFY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

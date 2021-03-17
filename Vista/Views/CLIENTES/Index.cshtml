@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Vista.Models.CLIENTES>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CLI_PRIMER_NOMBRE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLI_SEGUNDO_NOMBRE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLI_PRIMER_APELLIDO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLI_SEGUNDO_APELLIDO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLI_DOCUMENTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLI_NUMERO_MOVIL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLI_DIRECCION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLI_EMAIL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLI_PRESUPUESTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLI_ROW_CREATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLI_ROW_MODIFY)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIPODOCUMENTO.TD_DESCRIPCION)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_PRIMER_NOMBRE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_SEGUNDO_NOMBRE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_PRIMER_APELLIDO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_SEGUNDO_APELLIDO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_DOCUMENTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_NUMERO_MOVIL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_DIRECCION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_EMAIL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_PRESUPUESTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_ROW_CREATE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_ROW_MODIFY)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIPODOCUMENTO.TD_DESCRIPCION)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CLI_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CLI_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CLI_ID })
+        </td>
+    </tr>
+}
+
+</table>

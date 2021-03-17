@@ -1,0 +1,114 @@
+﻿@model Vista.Models.CLIENTES
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CLIENTES</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_PRIMER_NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_PRIMER_NOMBRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_SEGUNDO_NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_SEGUNDO_NOMBRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_PRIMER_APELLIDO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_PRIMER_APELLIDO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_SEGUNDO_APELLIDO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_SEGUNDO_APELLIDO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_DOCUMENTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_DOCUMENTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_NUMERO_MOVIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_NUMERO_MOVIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_DIRECCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_DIRECCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_EMAIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_EMAIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_PRESUPUESTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_PRESUPUESTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_ROW_CREATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_ROW_CREATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_ROW_MODIFY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_ROW_MODIFY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPODOCUMENTO.TD_DESCRIPCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPODOCUMENTO.TD_DESCRIPCION)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CLI_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

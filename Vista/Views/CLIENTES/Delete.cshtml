@@ -1,0 +1,120 @@
+﻿@model Vista.Models.CLIENTES
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>CLIENTES</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_PRIMER_NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_PRIMER_NOMBRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_SEGUNDO_NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_SEGUNDO_NOMBRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_PRIMER_APELLIDO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_PRIMER_APELLIDO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_SEGUNDO_APELLIDO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_SEGUNDO_APELLIDO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_DOCUMENTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_DOCUMENTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_NUMERO_MOVIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_NUMERO_MOVIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_DIRECCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_DIRECCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_EMAIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_EMAIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_PRESUPUESTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_PRESUPUESTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_ROW_CREATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_ROW_CREATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_ROW_MODIFY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_ROW_MODIFY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPODOCUMENTO.TD_DESCRIPCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPODOCUMENTO.TD_DESCRIPCION)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
